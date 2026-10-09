@@ -38,10 +38,9 @@ async function prepareInterstitial() {
 }
 
 async function maybeShowInterstitial() {
-  if (completed < 5 || completed % 5 !== 0) return;
-  if (lastInterstitialScan === completed) return;
-  lastInterstitialScan = completed;
+  if (completed - lastInterstitialScan < 5) return;
   if (!adsReady || !interstitialReady) return;
+  lastInterstitialScan = completed;
 
   interstitialReady = false;
   try {
