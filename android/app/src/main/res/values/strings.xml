@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">PorkFree Scan</string>
+    <string name="title_activity_main">PorkFree Scan</string>
+    <string name="package_name">com.porkfreescan.app</string>
+    <string name="custom_url_scheme">com.porkfreescan.app</string>
+</resources>

@@ -1,0 +1,8 @@
+node_modules/
+.gradle/
+android/.gradle/
+android/build/
+android/app/build/
+*.keystore
+*.jks
+porkfree-scan-reparado.zip

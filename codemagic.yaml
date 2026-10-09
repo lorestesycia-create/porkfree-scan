@@ -1,0 +1,30 @@
+workflows:
+  porkfree-android-release:
+    name: PorkFree Scan Android Release
+    max_build_duration: 60
+    environment:
+      java: 21
+      node: 20
+      android_signing:
+        - porkfree_scan
+    scripts:
+      - name: Install dependencies
+        script: npm install --include=dev --registry=https://registry.npmjs.org/
+      - name: Build web
+        script: npm run build:web
+      - name: Generate Android project if missing
+        script: |
+          if [ ! -f android/gradlew ]; then
+            npx cap add android
+          fi
+          npx cap sync android
+      - name: Configure Android release
+        script: python3 scripts/configure_android.py
+      - name: Build signed AAB
+        script: |
+          cd android
+          chmod +x gradlew
+          ./gradlew bundleRelease
+          jarsigner -verify -verbose -certs app/build/outputs/bundle/release/app-release.aab
+    artifacts:
+      - android/app/build/outputs/bundle/release/app-release.aab
