@@ -19,8 +19,13 @@ $('lookup').onclick=()=>lookup($('barcode').value.trim());$('barcode').onkeydown
 $('scan').onclick=async()=>{try{if(!Capacitor.isNativePlatform()){alert('El escáner requiere la aplicación Android. Puedes introducir un código manualmente.');return}const {camera}=await BarcodeScanner.checkPermissions();if(camera!=='granted'){const p=await BarcodeScanner.requestPermissions();if(p.camera!=='granted'){alert(tr('permission'));return}}const r=await BarcodeScanner.scan({formats:[BarcodeFormat.Ean13,BarcodeFormat.Ean8,BarcodeFormat.UpcA,BarcodeFormat.UpcE]});const code=r.barcodes?.[0]?.rawValue;if(code)await lookup(code)}catch(e){alert(String(e.message||e))}};render();
 
 
-const AD_BANNER = 'ca-app-pub-8854680295966508/9086592417';
-const AD_INTERSTITIAL = 'ca-app-pub-8854680295966508/6735761245';
+const TEST_ADS = true;
+const AD_BANNER = TEST_ADS
+  ? 'ca-app-pub-3940256099942544/9214589741'
+  : 'ca-app-pub-8854680295966508/9086592417';
+const AD_INTERSTITIAL = TEST_ADS
+  ? 'ca-app-pub-3940256099942544/1033173712'
+  : 'ca-app-pub-8854680295966508/6735761245';
 
 let adsReady = false;
 let interstitialReady = false;
