@@ -1027,6 +1027,8 @@
       detail = tr("error");
     }
     const labels = { safe: tr("safe"), unsafe: tr("unsafe"), unknown: tr("unknown") };
+    $("result").classList.remove("result-safe", "result-unsafe", "result-unknown");
+    $("result").classList.add("result-" + state);
     $("status").textContent = labels[state];
     $("status").style.color = { safe: "#15803d", unsafe: "#c62828", unknown: "#a36b00" }[state];
     $("product").textContent = name;
