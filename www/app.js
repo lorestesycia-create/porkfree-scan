@@ -1076,7 +1076,7 @@
     }
   };
   render();
-  var TEST_ADS = true;
+  var TEST_ADS = false;
   var AD_BANNER = TEST_ADS ? "ca-app-pub-3940256099942544/9214589741" : "ca-app-pub-8854680295966508/9086592417";
   var AD_INTERSTITIAL = TEST_ADS ? "ca-app-pub-3940256099942544/1033173712" : "ca-app-pub-8854680295966508/6735761245";
   var adsReady = false;
