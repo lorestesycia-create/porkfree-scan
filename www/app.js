@@ -1049,6 +1049,7 @@
   };
   $("scan").onclick = async () => {
     try {
+      await maybeShowInterstitial();
       if (!Capacitor.isNativePlatform()) {
         alert("El esc\xE1ner requiere la aplicaci\xF3n Android. Puedes introducir un c\xF3digo manualmente.");
         return;
