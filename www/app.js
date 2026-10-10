@@ -1059,6 +1059,12 @@
           return;
         }
       }
+      const moduleStatus = await BarcodeScanner.isGoogleBarcodeScannerModuleAvailable();
+      if (!moduleStatus.available) {
+        await BarcodeScanner.installGoogleBarcodeScannerModule();
+        alert("Se est\xE1 instalando el esc\xE1ner. Espera unos segundos y vuelve a pulsar Escanear c\xF3digo.");
+        return;
+      }
       const r = await BarcodeScanner.scan({ formats: [BarcodeFormat.Ean13, BarcodeFormat.Ean8, BarcodeFormat.UpcA, BarcodeFormat.UpcE] });
       const code = r.barcodes?.[0]?.rawValue;
       if (code) await lookup(code);
